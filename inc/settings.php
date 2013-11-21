@@ -1,11 +1,22 @@
 <?php
+//汉化并初始化  中国话的设置
+//by  qq250100785
 
     $info=get_theme_data(TEMPLATEPATH.'/style.css');
 	$themename=strtolower($info['Name']);
     // Theme Settings
+    //主题配置项
+/*
+ * ttl 是 label翻译
+ * values  数据是  默认项翻译
+ * type会有相应的渲染模版来实现功能
+ * hint是
+ *
+ * */
     $settings = array(
         'general'=>array(
 			'name'=>'General',
+            'title'=>'常规',
 			'content'=>array(
 				'logosource'=>array(
 					'type'=>'select', 'name'=>'logosource', 'value'=>'1', 'ttl'=>'Logo Source', 
@@ -40,6 +51,7 @@
 		),
 		'slider'=>array(
 			'name'=>'Slider',
+            'title'=>'幻灯片',
 			'content'=>array(
 				'txt'=>array(
 					'type'=>'p','name'=>'','value'=>'Recommended thumbnail size is 990x409px'
@@ -168,6 +180,7 @@
 		),
 		'layout'=>array(
 			'name'=>'Layout',
+            'title'=>'布局',
 			'content'=>array(
 				'pagelayout'=>array(
 					'type'=>'sidebars', 'name'=>'pagelayout', 'value'=>'2', 'ttl'=>'Content Layout', 
@@ -226,6 +239,7 @@
 		),
 		'social'=>array(
 			'name'=>'Social Buttons',
+            'title'=>'社交',
 			'content'=>array(
 				'showsocial'=>array(
 					'type'=>'check','name'=>'showsocial','value'=>'1','ttl'=>'Show social box', 'hint'=>'Turn on if you want to show social box'
@@ -367,6 +381,7 @@
 		),
 		'seo'=>array(
 			'name'=>'SEO',
+            'title'=>'搜索引擎',
 			'content'=>array(
 				'description'=>array(
 					'type'=>'text','name'=>'description','value'=>'','ttl'=>'Site description'				
@@ -402,6 +417,7 @@
 		),
 		'main-menu'=>array(
 			'name'=>'Menu',
+            'title'=>'菜单',
 			'content'=>array(
 				'effect'=>array(
 					'type'=>'select', 'name'=>'effect', 'value'=>'standart', 'ttl'=>'Effect', 
@@ -426,6 +442,7 @@
 		),
 		'integration'=>array(
 			'name'=>'Integration',
+            'title'=>'集成',
 			'content'=>array(
 				'rss'=>array(
 					'type'=>'text','name'=>'rss','value'=>'','ttl'=>'RSS URL', 'hint'=>'Enter RSS url'
@@ -441,8 +458,11 @@
 				)
 			)
 		),
+
+        //内置翻译
 		'translations'=>array(
 			'name'=>'Translations ',
+            'title'=>'翻译',
 			'content'=>array(
 				'general'=>array(
 					'type'=>'group', 'name'=>'general', 'ttl'=>'General Text',
@@ -463,6 +483,8 @@
 						'nothingfound'=>'Nothing found, please search again.'//------------------------------
 					)
 				),
+                //模版翻译部分
+                //group为分组
 				'sitemap'=>array(
 					'type'=>'group', 'name'=>'sitemap', 'ttl'=>'Custom Template Text',
 					'content'=>array(
@@ -527,27 +549,28 @@
 							'type'=>'text','name'=>'altcats','value'=>'','ttl'=>'Hint text for category list'
 						)
 					),
+                    //默认的翻译
 					'value'=>array (
-						'readmore'=>'Read more',//------------------------------
-						'searchresults'=>'Search results for \'%s\'', 
+						'readmore'=>'Read more ...',//------------------------------
+						'searchresults'=>'搜索结果： \'%s\' 条',
 						'before-category'=>'Posted in&nbsp',//------------------------------
-						'nextpage'=>'Next Page',//------------------------------
-						'tags'=>'Tags',//------------------------------
-						'relatedposts'=>'Related Posts',
-						'norelatedposts'=>'No Related Posts',
-						'permalink'=>'Permalink to %1$s',//------------------------------
-						'catarchive'=>'Category %s',//------------------------------
+						'nextpage'=>'下一页',//------------------------------
+						'tags'=>'标签',//------------------------------
+						'relatedposts'=>'你可能喜欢',
+						'norelatedposts'=>'',
+						'permalink'=>'本文永久链接： %1$s',//------------------------------
+						'catarchive'=>'%s',//------------------------------
 						'tagarchive'=>'%s tagged posts',//------------------------------
-						'dailyarchives'=>'Daily Archives %s',//------------------------------
-						'monthlyarchives'=>'Monthly Archives %s',//------------------------------
-						'yearlyarchives'=>'Yearly Archives %s',//------------------------------
-						'blogarchives'=>'Blog Archives',//------------------------------
-						'send'=>'Send',//------------------------------
+						'dailyarchives'=>'日 %s',//------------------------------
+						'monthlyarchives'=>'月 %s',//------------------------------
+						'yearlyarchives'=>'年 %s',//------------------------------
+						'blogarchives'=>'归档',//------------------------------
+						'send'=>'发送',//------------------------------
 						'feedbackttl' =>'Contact form',
 						'feedbackbefore'=>'Inputs marked (*) are required',
-						'altposts'=>'%s post',
-						'altpostss'=>'%s posts',
-						'altcats'=>'View all posts filed under %s'
+						'altposts'=>'%s 条',
+						'altpostss'=>'%s 条',
+						'altcats'=>'查看所有 %s'
 					)
 				),
 				'error'=>array(
@@ -664,32 +687,33 @@
 							'type'=>'text','name'=>'commenttime','value'=>'','ttl'=>'Comment time format (%1$s - date, %2$s - time)'
 						)
 					),
+                    //翻译
 					'value'=>array(
 						'password'=>'This post is password protected. Enter the password to view comments.',//------------------------------
-						'noresponses'=>'No comments',//------------------------------
-						'oneresponse'=>'One comment',//------------------------------
-						'multiresponse'=>'% comments',//------------------------------
-						'formoneresponse'=>'One comment to %1$s',//------------------------------
+						'noresponses'=>'评论数：0',//------------------------------
+						'oneresponse'=>'评论数：1',//------------------------------
+						'multiresponse'=>'评论数：% ',//------------------------------
+						'formoneresponse'=>'评论： %1$s',//------------------------------
 						'formmultiresponse'=>'%2$s comments to %1$s',//------------------------------
 						'comment_notes_before'=>'',//------------------------------
 						'comment_notes_after'=>'You may use these HTML tags and attributes: %s',//------------------------------
-						'closedcomments'=>'Comments are closed.',//------------------------------
-						'disabledcomments'=>'Comments are off for this post',
-						'leavereply'=>'Leave a reply',//------------------------------
+						'closedcomments'=>'评论已关闭.',//------------------------------
+						'disabledcomments'=>'评论已关闭',
+						'leavereply'=>'回复',//------------------------------
 						'mustbe'=>'You must be',//------------------------------
-						'loggedin'=>'logged in',//------------------------------
-						'loggedinas'=>'logged in as',//------------------------------
-						'topostcomment'=>'to post a comment',//------------------------------
-						'logout'=>'Logout',//------------------------------
-						'name'=>'Name',
-						'mail'=>'Mail',
-						'website'=>'Website',
-						'addcomment'=>'Add comment',//------------------------------
+						'loggedin'=>'登录',//------------------------------
+						'loggedinas'=>'',//------------------------------
+						'topostcomment'=>'提交评论',//------------------------------
+						'logout'=>'退出',//------------------------------
+						'name'=>'姓名',
+						'mail'=>'E-mail',
+						'website'=>'网址',
+						'addcomment'=>'评论',//------------------------------
 						'says'=>'says',//------------------------------
-						'reply'=>'Reply',//------------------------------
+						'reply'=>'回复',//------------------------------
 						'cancelreply'=>'Cancel reply',//------------------------------
-						'edit'=>'Edit',//------------------------------
-						'delete'=>'Delete',
+						'edit'=>'编辑',//------------------------------
+						'delete'=>'删除',
 						'spam'=>'Spam',
 						'comment'=>'Comment',//------------------------------
 						'nextcomments'=>'Newer comments',//------------------------------
@@ -717,6 +741,7 @@
 		),
 		'contactform'=>array(
 			'name'=>'Contact form',
+            'title'=>'联系表单',
 			'content'=>array(
 				'txt'=>array(
 					'type'=>'p','name'=>'','value'=>'To add contact form to your web site, create new page and choose "Contact form" template'
@@ -781,6 +806,7 @@
 		),
 		'contacts'=>array(
 			'name'=>'Contacts',
+            'title'=>'联系我们',
 			'content'=>array(
 				'txt'=>array(
 					'type'=>'p','name'=>'','value'=>'
@@ -792,6 +818,7 @@
 		),
 		'updates'=>array(
 			'name'=>'Fresh themes',
+            'title'=>'更新',
 			'content'=>array(
 				'updates'=>array(
 					'type'=>'updates','name'=>'updates','value'=>'','ttl'=>'Catalog', 'hint'=>''
@@ -800,8 +827,10 @@
 		),
 		'activate'=>array(
 			'name'=>'Theme Activation',
+            'title'=>'激活主题',
 			'content'=>array(
 				'activator'=>array(
+                    //根据type加载配置内容
 					'type'=>'activator','name'=>'activator','value'=>'','ttl'=>'Activation Key', 'hint'=>'Enter your activation key'
 				),
 			)

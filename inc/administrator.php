@@ -7,6 +7,7 @@ class AdminPage {
 	var $PageOptions;
 	var $tasks;
 	var $updateready;
+    //管理页
 	function AdminPage() {
 		global $SMTheme, $pagenow;
 		
@@ -25,10 +26,11 @@ class AdminPage {
 	 function loadMenu(){
 			$info = get_theme_data(TEMPLATEPATH.'/style.css');
 			$name = $info['Name']?$info['Name']:'SMT Options';
-		  add_menu_page('Theme', $name, 'manage_options', 'OptionsPage', array(&$this, 'ThemeOptionsPage'), '', 64);
-		 add_theme_page( $name, $name, 'manage_options', 'OptionsPage', array(&$this, 'ThemeOptionsPage'));
-		  $this->load_tabs_menu(1);
+            add_menu_page('Theme', $name, 'manage_options', 'OptionsPage', array(&$this, 'ThemeOptionsPage'), '', 64);
+            add_theme_page( $name, $name, 'manage_options', 'OptionsPage', array(&$this, 'ThemeOptionsPage'));
+            $this->load_tabs_menu(1);
 	}
+    //加载头部
 	  function loadHeadTemplate()
 	{	
 		if ($_GET['page']=='OptionsPage')$_GET['page']='general';
@@ -73,7 +75,7 @@ class AdminPage {
 <?php
 	}
 	
-	
+	//配置项
 	function ThemeOptionsPage() {
 		?>
         <div class="wrap">
@@ -134,23 +136,30 @@ class AdminPage {
         </div>
     <?php
 	}
-	
+	//二级菜单项
 	function load_tabs_menu($type=0) {
 		
 		if (is_array($this->PageOptions)&&count($this->PageOptions>0)) {
 			
 			foreach ($this->PageOptions as $href=>$menu) {
 				if ($type) {
-					add_submenu_page( 'OptionsPage', $menu['name'], $menu['name'], 'manage_options', $href, array(&$this,'ThemeOptionsPage'));
+                    //一级
+                    //添加wp menu
+					add_submenu_page( 'OptionsPage', $menu['name'], $menu['title'], 'manage_options', $href, array(&$this,'ThemeOptionsPage'));
+                    //下面是原版
+                   // add_submenu_page( 'OptionsPage', $menu['name'], $menu['name'], 'manage_options', $href, array(&$this,'ThemeOptionsPage'));
 				} else {
+                    //添加 主题配置tab
 					echo "<li class='".((($_GET['page']==$href)||($_GET['page']=='OptionsPage'&&$href=='general'))?'active':'')."'>
-					<img src='".get_template_directory_uri()."/inc/images/menu/".$href.".png' alt='".$menu['name']."' />".$menu['name']."</li>";
+					<img src='".get_template_directory_uri()."/inc/images/menu/".$href.".png' alt='".$menu['name']."' />".$menu['title']."</li>";
+                    //下面是原版
+                    //<img src='".get_template_directory_uri()."/inc/images/menu/".$href.".png' alt='".$menu['name']."' />".$menu['name']."</li>";
 				}
 			}
 			remove_submenu_page( 'OptionsPage', 'OptionsPage' );
 		}
 	}
-	
+	//负责加载配置页 tabs
 	function load_tabs_content($type=0) {
 		
 		if (is_array($this->PageOptions)&&count($this->PageOptions>0)) {
@@ -159,6 +168,7 @@ class AdminPage {
 				if ($href!='activate') echo '<form id="form_'.$href.'" method="POST">';
 				echo "<input type='hidden' name='option' value='".$href."' />";
 				foreach ($x['content'] as $param) {
+                    //读取setting大数组中 content内容
 					$param['option']=$href;
 					$this->show_input( $param );
 				}
@@ -167,7 +177,7 @@ class AdminPage {
 			}
 		}
 	}
-	
+	//根据setting中 type加载渲染内容
 	function show_input($param){	
 		global $SMTheme;
 		switch ($param['type']) {
@@ -742,7 +752,7 @@ class AdminPage {
 		
 		die();
 	}
-	
+	//图片上传
 	function imageupload() {
 		
 		$exts = array('jpg','png','gif','jpeg','ico');
@@ -759,7 +769,7 @@ class AdminPage {
 			echo $file['url'];
 		} else echo 'Unallowed file extention';
 	}
-	
+	//保存表单
 	function formsave() {
 	
 		$option=$_POST['option'];
@@ -773,7 +783,7 @@ class AdminPage {
 		echo 'New configuration saved';
 		
 	}
-	
+	//激活主题
 	function activate() {
 		$data['domain']=$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_NAME'];
 		$data['info']=get_theme_data(TEMPLATEPATH.'/style.css');

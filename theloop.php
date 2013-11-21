@@ -1,4 +1,6 @@
-<?php 
+<?php
+//循环输出文章
+
 	global $post, $query_string, $SMTheme;
 	query_posts($query_string);
 
@@ -31,7 +33,7 @@
 			
 				<span class='post-date'><?php echo get_the_date(); ?></span>&nbsp; |
 				
-				In category <?php the_category(', '); ?>
+				<?php the_category(', '); ?>
 				<?php
 				if(comments_open( get_the_ID() ))  {
                     ?> &nbsp;|&nbsp; <span class='post-comments'><?php comments_popup_link( $SMTheme->_( 'noresponses' ), $SMTheme->_( 'oneresponse' ), $SMTheme->_( 'multiresponse' ) ); ?></span>

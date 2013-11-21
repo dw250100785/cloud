@@ -51,7 +51,7 @@
 			return $this->options[$section]['content'][$param]['value'];
 			
 		}
-		
+		//主题翻译
 		function _($param) {
 			return $this->lang[$param];
 		}
@@ -403,7 +403,7 @@
 			if (isset($params)&&$params!=''&&$supported||(is_dash()||$usedefaults($param))) {
 				$this->options=$params;
 			}
-			
+			//value 翻译
 			foreach ($this->options['translations']['content'] as $key=>$value) {
 				foreach ($value['value'] as $param=>$word) {
 					$this->lang[$param]=$word;
