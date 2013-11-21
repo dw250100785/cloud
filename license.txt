@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿By accessing this web site or downloading themes, you are 
+=======
+By accessing this web site or downloading themes, you are 
+>>>>>>> f827cc64da2d47246e7a4fce0eaaa88be06d5785
 agreeing to comply with and be bound by the following Terms and 
 Conditions of Use.
 
