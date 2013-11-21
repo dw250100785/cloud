@@ -8,7 +8,7 @@ Plugin Name: Video Feed Box
     
     $video_defaults = array(
 		'width' =>'272',
-        'title' => 'Video',
+        'title' => '视频',
         'videos' => array(
 			array(
 				'title' => 'The Mountain', 

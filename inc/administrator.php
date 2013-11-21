@@ -455,6 +455,7 @@ class AdminPage {
 							</div>
 							<?php
 						break;
+                        //联系表单
 						case 'contactform':
 							?>
 							<p class='p_ttl'>

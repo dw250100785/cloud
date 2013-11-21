@@ -1,4 +1,5 @@
 <?php global $SMTheme;
+//判断手机
 if (preg_match('/mobi/i', $_SERVER['HTTP_USER_AGENT'])) echo '<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">'."\r\n";
 else echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">'."\r\n";
 ?>
@@ -10,7 +11,7 @@ else echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:
 	<?php $SMTheme->show_title(); ?>
 
 	<?php  wp_head(); ?>
-	
+	<!--get  后台配置分块-->
 	<style type="text/css"><?php echo $SMTheme->get( 'integration','css' )?></style>
 	
 	<?php echo $SMTheme->get( 'integration','headcode' ); ?>

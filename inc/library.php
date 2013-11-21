@@ -191,6 +191,7 @@
 					break;
 			}
 		}
+        //幻灯片  slider
 		function block_slider() {
 		
 			$slides=$this->get_slides();
@@ -403,8 +404,9 @@
 			if (isset($params)&&$params!=''&&$supported||(is_dash()||$usedefaults($param))) {
 				$this->options=$params;
 			}
-			//value 翻译
+			//根据content中 value属性进行 翻译
 			foreach ($this->options['translations']['content'] as $key=>$value) {
+                //$value 必须是数组
 				foreach ($value['value'] as $param=>$word) {
 					$this->lang[$param]=$word;
 				}

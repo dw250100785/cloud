@@ -448,13 +448,13 @@
 					'type'=>'text','name'=>'rss','value'=>'','ttl'=>'RSS URL', 'hint'=>'Enter RSS url'
 				),
 				'css'=>array(
-					'type'=>'textarea','name'=>'css','value'=>'','ttl'=>'Custom CSS', 'hint'=>'Enter your custom css code. Add only the css code without <style></style> style blocks'
+					'type'=>'textarea','name'=>'css','value'=>'','ttl'=>'自定义 CSS', 'hint'=>'Enter your custom css code. Add only the css code without <style></style> style blocks'
 				),
 				'headcode'=>array(
-					'type'=>'textarea','name'=>'headcode','value'=>'','ttl'=>'Head Code', 'hint'=>'Enter your custom header code (scripts, links or meta)'
+					'type'=>'textarea','name'=>'headcode','value'=>'','ttl'=>'头部代码', 'hint'=>'Enter your custom header code (scripts, links or meta)'
 				),
 				'footercode'=>array(
-					'type'=>'textarea','name'=>'footercode','value'=>'','ttl'=>'Footer Code', 'hint'=>'Enter your custom html code for footer'
+					'type'=>'textarea','name'=>'footercode','value'=>'','ttl'=>'底部代码', 'hint'=>'Enter your custom html code for footer'
 				)
 			)
 		),
@@ -503,17 +503,18 @@
 						'tags'=>array(
 							'type'=>'text','name'=>'tags','value'=>'','ttl'=>'Tags text'
 						),
+                        //value  这里为空，所以允许单独的values数据填充新的定义
 						'relatedposts'=>array(
-							'type'=>'text','name'=>'relatedposts','value'=>'','ttl'=>'Related posts text'
+							'type'=>'text','name'=>'relatedposts','value'=>'猜你喜欢','ttl'=>'Related posts text'
 						),
 						'norelatedposts'=>array(
-							'type'=>'text','name'=>'norelatedposts','value'=>'','ttl'=>'No related posts text'
+							'type'=>'text','name'=>'norelatedposts','value'=>'没有相关推荐','ttl'=>'No related posts text'
 						),
 						'permalink'=>array(
 							'type'=>'text','name'=>'permalink','value'=>'','ttl'=>'Permalink to text'
 						),
 						'catarchive'=>array(
-							'type'=>'text','name'=>'catarchive','value'=>'','ttl'=>'Category archive text'
+							'type'=>'text','name'=>'catarchive','value'=>'分类','ttl'=>'Category archive text'
 						),
 						'tagarchive'=>array(
 							'type'=>'text','name'=>'tagarchive','value'=>'','ttl'=>'Tag archive text'
@@ -550,6 +551,7 @@
 						)
 					),
                     //默认的翻译
+                    //上面的字段都没有设置 value值，单独在这里统一设置，为了就是便于翻译
 					'value'=>array (
 						'readmore'=>'Read more ...',//------------------------------
 						'searchresults'=>'搜索结果： \'%s\' 条',
@@ -557,7 +559,7 @@
 						'nextpage'=>'下一页',//------------------------------
 						'tags'=>'标签',//------------------------------
 						'relatedposts'=>'你可能喜欢',
-						'norelatedposts'=>'',
+						'norelatedposts'=>'没有相关文章',
 						'permalink'=>'本文永久链接： %1$s',//------------------------------
 						'catarchive'=>'%s',//------------------------------
 						'tagarchive'=>'%s tagged posts',//------------------------------
@@ -566,8 +568,8 @@
 						'yearlyarchives'=>'年 %s',//------------------------------
 						'blogarchives'=>'归档',//------------------------------
 						'send'=>'发送',//------------------------------
-						'feedbackttl' =>'Contact form',
-						'feedbackbefore'=>'Inputs marked (*) are required',
+						'feedbackttl' =>'联系我们',
+						'feedbackbefore'=>'星号为必填项',
 						'altposts'=>'%s 条',
 						'altpostss'=>'%s 条',
 						'altcats'=>'查看所有 %s'
@@ -732,8 +734,8 @@
 						)
 					),
 					'value'=>array (
-						'firstpage'=>'1',//------------------------------
-						'lastpage'=>'last page'//------------------------------
+						'firstpage'=>'第一页',//------------------------------
+						'lastpage'=>'最后一页'//------------------------------
 					)
 				)
 				
@@ -747,7 +749,7 @@
 					'type'=>'p','name'=>'','value'=>'To add contact form to your web site, create new page and choose "Contact form" template'
 				),
 				'text'=>array(
-					'type'=>'textarea','name'=>'text','value'=>'Find and contact us','ttl'=>'Text', 'hint'=>'Enter text for contact page.'
+					'type'=>'textarea','name'=>'text','value'=>'联系方式：','ttl'=>'Text', 'hint'=>'Enter text for contact page.'
 				),
 				'address'=>array(
 					'type'=>'text','name'=>'address','value'=>'Baker St 221b, London','ttl'=>'Map Address', 'hint'=>'Enter address or longitude and latitude for map center. For example "Baker St 221b, London" and "51.523795,-0.158465" have the same result.'
@@ -775,25 +777,25 @@
 						)
 					), 'hint'=>'Create your contact list. To add new contact fill the form and click "Add detail" button. You can upload your contact icon, or choose an icon from from standart presets.'
 				),
-				'contactform'=>array( 'type'=>'contactform', 'ttl'=>'Contact form', 'value'=>array (
+				'contactform'=>array( 'type'=>'contactform', 'ttl'=>'联系我们', 'value'=>array (
 						'1' => Array (
-							'ttl' => 'Your name',
+							'ttl' => '姓名',
 							'req'=>'required',
 							'type' => 'text'
 						),
 						'2' => Array (
-							'ttl' => 'Your email',
+							'ttl' => 'Email',
 							'req'=>'required',
 							'regex'=>"^[a-z0-9_\\\+-]+(\\\.[a-z0-9_\\\+-]+)*@[a-z0-9-]+(\\\.[a-z0-9-]+)*\\\.([a-z]{2,4})$",
 							'type' => 'text'
 						),
 						'3' => Array (
-							'ttl' => 'Your message',
+							'ttl' => '内容',
 							'req'=>'required',
 							'type' => 'textarea'
 						),
 						'4' => Array (
-							'ttl' => 'Topic',
+							'ttl' => '关于',
 							'req'=>'required',
 							'type' => 'text'
 						)
@@ -810,9 +812,9 @@
 			'content'=>array(
 				'txt'=>array(
 					'type'=>'p','name'=>'','value'=>'
-    <b>Theme Author:</b> <a href="http://smthemes.com">SMThemes</a><br />
-    <b>Theme Homepage:</b> <a href="http://smthemes.com/'.$themename.'">http://smthemes.com/'.$themename.'</a><br />
-    <b>Support Forums:</b> <a href="http://smthemes.com/support/forum/'.$themename.'-free-wordpress-theme">http://smthemes.com/support/forum/'.$themename.'-free-wordpress-theme</a>'
+    <b>作者:</b> <a href="http://smthemes.com">SMThemes</a><br />
+    <b>访问主题:</b> <a href="http://smthemes.com/'.$themename.'">http://smthemes.com/'.$themename.'</a><br />
+    <b>技术支持:</b> <a href="http://smthemes.com/support/forum/'.$themename.'-free-wordpress-theme">http://smthemes.com/support/forum/'.$themename.'-free-wordpress-theme</a>'
 				)
 			)
 		),
