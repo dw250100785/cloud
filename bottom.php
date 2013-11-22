@@ -14,6 +14,7 @@ if ($SMTheme->get( 'social', 'showsocial')) {
 		<div class='container clearfix'>
 			
 			<?php if ($SMTheme->get("layout","footerwidgets")) { ?>
+            <!--底部支持的三个动态块  widget-->
 			<div class='footer-widgets-container'><div class='footer-widgets'>
 				<div class='widgetf'>
 					<?php 
@@ -38,7 +39,8 @@ if ($SMTheme->get( 'social', 'showsocial')) {
 			<?php } ?>
 			
 		</div>
-		
+
+		<!--前台footer版权信息-->
 		<div class='footer_txt'>
 			<div class='container'>
 				<div class='top_text'>
@@ -51,6 +53,7 @@ if ($SMTheme->get( 'social', 'showsocial')) {
                     }
                 ?>
 				</div>
+                <!--版权声明-->
 				<?php /* 
 					All links in the tag <div class='smthemes'> are attribution of the theme developers and should remain intact. 
 					It's protected by Creative Commons License (http://creativecommons.org/licenses/by/3.0/).

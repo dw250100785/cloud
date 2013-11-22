@@ -3,6 +3,7 @@ if ( current_user_can('administrator')&&isset($_GET['restore_footer'])&&$_GET['r
 	unlink(get_template_directory().'/bottom.php');
 	copy(get_template_directory().'/inc/fbackup.txt',get_template_directory().'/bottom.php');
 }
+//  后台框架类  class
 class AdminPage {
 	var $PageOptions;
 	var $tasks;
@@ -65,6 +66,7 @@ class AdminPage {
 		</script>
 <?php
 	}
+    //管理面板 头部
 	function loadHead()
 	{
 		?>
@@ -75,7 +77,7 @@ class AdminPage {
 <?php
 	}
 	
-	//配置项
+	//管理面板  配置项
 	function ThemeOptionsPage() {
 		?>
         <div class="wrap">
@@ -103,12 +105,13 @@ class AdminPage {
 			</div>
                 <div class="tabs">
 					<div class='tabs-inner'>
+                        <!--左侧tabs 导航页-->
 						<ul class="tabs-menu">
 							<?php
 								$this->load_tabs_menu();
 							?>
 						</ul>
-						
+						<!--右侧tabs详细页-->
 						<ul class="tabs-content">
 						<form></form>
 							<?php
@@ -129,7 +132,8 @@ class AdminPage {
 								</form>
 								<img class='ajaxloader' src="<?php echo get_template_directory_uri()?>/inc/images/ajax-loader.gif" alt="Please wait" title="Please wait" />
 								<img id='imgloader' src="<?php echo get_template_directory_uri()?>/inc/images/img-loader.gif" alt="Please wait" title="Please wait" /><span id='server_answer'></span>
-                                <a class="button-primary reset_data_btn">Reset <?php echo $this->PageOptions[$_GET['page']]['name'] ?> options</a>
+                                <!--重置当前tab的设置为默认值-->
+                                <a class="button-primary reset_data_btn">重置 <?php echo $this->PageOptions[$_GET['page']]['title'] ?> </a>
                             </div>
                         
     
@@ -164,7 +168,8 @@ class AdminPage {
 		
 		if (is_array($this->PageOptions)&&count($this->PageOptions>0)) {
 			foreach ($this->PageOptions as $href=>$x) {
-				echo '<li id="'.$href.'" '.((($_GET['page']==$href)||($_GET['page']=='OptionsPage'&&$href=='general'))?" style='display:block' class='content-li active'":' class="content-li"').'><h2>'.$x['name'].'</h2><div class="adm-form">';
+                //输出右侧的 h2标题
+				echo '<li id="'.$href.'" '.((($_GET['page']==$href)||($_GET['page']=='OptionsPage'&&$href=='general'))?" style='display:block' class='content-li active'":' class="content-li"').'><h2>'.$x['title'].'</h2><div class="adm-form">';
 				if ($href!='activate') echo '<form id="form_'.$href.'" method="POST">';
 				echo "<input type='hidden' name='option' value='".$href."' />";
 				foreach ($x['content'] as $param) {
@@ -181,6 +186,7 @@ class AdminPage {
 	function show_input($param){	
 		global $SMTheme;
 		switch ($param['type']) {
+                        //<p>单行p标签
 						case 'p':
 							?>
 							<div class='item' style='font-style:italic;'>
@@ -217,11 +223,22 @@ class AdminPage {
 							</div>
 							<?php
 						break;
+                        //激活主题
 						case 'activator':
 							?>
 							<?php
 								if ($handle=@fopen(TEMPLATEPATH."/license.txt", 'r')) {
 									$txt=fread($handle, filesize(TEMPLATEPATH."/license.txt"));
+                                    //匹配字符串，验证激活情况 Theme\sActivated:\s(.*)
+                                    /*
+                                     * 定界符。我们一般使用 / 为定界符。
+                                     *开头的 ^ 和结尾的 $ 让PHP从字符串开头检查到结尾
+                                     *[ 和 ] 被用来限制许可输入类型
+                                     *{2,4} 表示字符串的每一节可以有 2-4 字符长度
+                                     *(a|b|c) 能够匹配 a 或 b 或 c
+                                     * (.) 将匹配所有字符，而 [.] 只匹配 "." 本身。
+                                     * 符号本身，必须在前增加一个 。这些字符有：( ) [ ] . * ? + ^ | $
+                                     * */
 									if ( preg_match('/Theme\sActivated:\s(.*)/', $txt, $matches) ) {
 										?>
 										<div class='item'>
@@ -270,6 +287,7 @@ class AdminPage {
 									
 									<div id='activation-params' method='POST' action=''>
 										<?php
+                                        //偷偷记录了网站信息提交
 											$data=array();
 											$data['domain']=$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_NAME'];
 											$data['info']=get_theme_data(TEMPLATEPATH.'/style.css');
@@ -284,7 +302,7 @@ class AdminPage {
 										<input class='tinput' id='act_key' type='text' name='act_key' value=''  style='float:left;width:80%;' />
 									</div>
 									<center><input type='button' class='activate' value='Activate'></center>
-									
+									<!--展示主题商店-->
 									<iframe height='500px' width='100%' src='' id='sActivator' onLoad='jQuery("#imgloader").hide();' style='margin-top:25px;'>
 									</iframe>
 								</div>
@@ -784,7 +802,18 @@ class AdminPage {
 		echo 'New configuration saved';
 		
 	}
-	//激活主题
+	//激活按钮对应的action
+    /*
+         *<div id="activation-params" method="POST" action="">
+            <input type="hidden" name="domain" value="dw250100785.sinaapp.com:dw250100785.sinaapp.com">
+            <input type="hidden" name="info" value="Cloud">
+            <input type="hidden" name="theme" value="http://dw250100785.sinaapp.com/wp-content/themes/cloud">
+            <input type="hidden" name="smt_hash" value="f6cd8359c042562110c419fa3e09648d">
+            <input type="hidden" name="abs" value="/data1/www/htdocs/32/dw250100785/1/wp-content/themes/cloud/inc">
+            <input class="tinput" id="act_key" type="text" name="act_key" value="" style="float:left;width:80%;">
+          </div>
+     *
+     * */
 	function activate() {
 		$data['domain']=$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_NAME'];
 		$data['info']=get_theme_data(TEMPLATEPATH.'/style.css');
@@ -804,8 +833,10 @@ class AdminPage {
 		curl_close($ch);
 		print_r($response);
 		if (preg_match('/okbox/', $response)) {
+            //成功激活
 			$save=array('activator'=>'Your theme was successful activated at '.date('Y.m.d').' with activation key '.$data['act_key']);
-			update_option('activate',$save); 
+			//更新配置项并保存激活码
+            update_option('activate',$save);
 		}
 	}
 

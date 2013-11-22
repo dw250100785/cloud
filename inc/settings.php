@@ -7,10 +7,10 @@
     // Theme Settings
     //主题配置项
 /*
- * ttl 是 label翻译
- * values  数据是  默认项翻译
- * type会有相应的渲染模版来实现功能
- * hint是
+ * ttl     label翻译   小标题
+ * values  默认项翻译
+ * type    相应的渲染模版来实现功能
+ * hint   小灯泡提示
  *
  * */
     $settings = array(
@@ -19,11 +19,11 @@
             'title'=>'常规',
 			'content'=>array(
 				'logosource'=>array(
-					'type'=>'select', 'name'=>'logosource', 'value'=>'1', 'ttl'=>'Logo Source', 
+					'type'=>'select', 'name'=>'logosource', 'value'=>'1', 'ttl'=>'Logo 类型',
 					'params'=>array(
-						'1'=>'Logo Image',
-						'2'=>'Custom Text'
-					),'hint'=>'Select a logo source'
+						'1'=>'图片',
+						'2'=>'文字'
+					),'hint'=>'选择LOGO的类型'
 				),
 				'logos'=>array(
 					'type'=>'variants', 'name'=>'logos', 'depend'=>'logosource',
@@ -384,34 +384,35 @@
             'title'=>'搜索引擎',
 			'content'=>array(
 				'description'=>array(
-					'type'=>'text','name'=>'description','value'=>'','ttl'=>'Site description'				
+					'type'=>'text','name'=>'description','value'=>'','ttl'=>'站点描述'
 				),
 				'keywords'=>array(
-					'type'=>'text','name'=>'keywords','value'=>'','ttl'=>'Site keywords'				
+					'type'=>'text','name'=>'keywords','value'=>'','ttl'=>'站点关键字'
 				),
 				'authormeta'=>array(
-					'type'=>'text','name'=>'authormeta','value'=>'','ttl'=>'Site Author Meta'
+					'type'=>'text','name'=>'authormeta','value'=>'','ttl'=>'作者信息'
 				),
+                //NOINDEX ：告诉蜘蛛不要索引某个网页,奉告蜘蛛不要引
 				'category'=>array(
-					'type'=>'check','name'=>'category','value'=>'0','ttl'=>'&#139;noindex&#155; in category archives', 'hint'=>'Turn on to prevent all robots from indexing a category page on your site'
+					'type'=>'check','name'=>'category','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引分类', 'hint'=>'Turn on to prevent all robots from indexing a category page on your site'
 				),
 				'tag'=>array(
-					'type'=>'check','name'=>'tag','value'=>'0','ttl'=>'&#139;noindex&#155; in tag archives', 'hint'=>'Turn on to prevent all robots from indexing a tag page on your site'
+					'type'=>'check','name'=>'tag','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引关键词归档', 'hint'=>'Turn on to prevent all robots from indexing a tag page on your site'
 				),
 				'author'=>array(
-					'type'=>'check','name'=>'author','value'=>'0','ttl'=>'&#139;noindex&#155; in author archives', 'hint'=>'Turn on to prevent all robots from indexing a author page on your site'
+					'type'=>'check','name'=>'author','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引作者归档', 'hint'=>'Turn on to prevent all robots from indexing a author page on your site'
 				),
 				'search'=>array(
-					'type'=>'check','name'=>'search','value'=>'0','ttl'=>'&#139;noindex&#155; in search archives', 'hint'=>'Turn on to prevent all robots from indexing a search page on your site'
+					'type'=>'check','name'=>'search','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引搜索', 'hint'=>'Turn on to prevent all robots from indexing a search page on your site'
 				),
 				'day'=>array(
-					'type'=>'check','name'=>'day','value'=>'0','ttl'=>'&#139;noindex&#155; in day archives', 'hint'=>'Turn on to prevent all robots from indexing a day archives page on your site'
+					'type'=>'check','name'=>'day','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引每日归档', 'hint'=>'Turn on to prevent all robots from indexing a day archives page on your site'
 				),
 				'month'=>array(
-					'type'=>'check','name'=>'month','value'=>'0','ttl'=>'&#139;noindex&#155; in month archives', 'hint'=>'Turn on to prevent all robots from indexing a month archives page on your site'
+					'type'=>'check','name'=>'month','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引每月归档', 'hint'=>'Turn on to prevent all robots from indexing a month archives page on your site'
 				),
 				'year'=>array(
-					'type'=>'check','name'=>'year','value'=>'0','ttl'=>'&#139;noindex&#155; in year archives', 'hint'=>'Turn on to prevent all robots from indexing a year archives page on your site'
+					'type'=>'check','name'=>'year','value'=>'0','ttl'=>'&#139;noindex&#155; (爬虫)索引每年归档', 'hint'=>'Turn on to prevent all robots from indexing a year archives page on your site'
 				)
 			)
 		),
@@ -465,80 +466,81 @@
             'title'=>'翻译',
 			'content'=>array(
 				'general'=>array(
-					'type'=>'group', 'name'=>'general', 'ttl'=>'General Text',
+                    //ttl为 横条区
+					'type'=>'group', 'name'=>'general', 'ttl'=>'通用界面',
 					'content'=>array(
 						'homelink'=>array( 
-							'type'=>'text','name'=>'homelink','value'=>'','ttl'=>'Home link text'
+							'type'=>'text','name'=>'homelink','value'=>'','ttl'=>'网站首页'
 						),
 						'search'=>array( 
-							'type'=>'text','name'=>'search','value'=>'','ttl'=>'Search text'
+							'type'=>'text','name'=>'search','value'=>'','ttl'=>'搜索页'
 						),
 						'nothingfound'=>array(
-							'type'=>'text','name'=>'nothingfound','value'=>'','ttl'=>'Nothing found'
+							'type'=>'text','name'=>'nothingfound','value'=>'','ttl'=>'没有内容'
 						)
 					),
 					'value'=>array (
-						'homelink'=>'Home',//------------------------------
-						'search'=>'Search',//------------------------------
-						'nothingfound'=>'Nothing found, please search again.'//------------------------------
+						'homelink'=>'Home',//------------------------------ 这部分建议不翻译  就是 home最好
+						'search'=>'搜索',//------------------------------
+						'nothingfound'=>'没有结果，请重试.'//------------------------------
 					)
 				),
                 //模版翻译部分
                 //group为分组
 				'sitemap'=>array(
-					'type'=>'group', 'name'=>'sitemap', 'ttl'=>'Custom Template Text',
+					'type'=>'group', 'name'=>'sitemap', 'ttl'=>'自定义模版',
 					'content'=>array(
 						'readmore'=>array(
-							'type'=>'text','name'=>'readmore','value'=>'','ttl'=>'Read more text'
+							'type'=>'text','name'=>'readmore','value'=>'','ttl'=>'查看更多'
 						),
 						'searchresults'=>array(
-							'type'=>'text','name'=>'searchresults','value'=>'','ttl'=>'Text of search result'
+							'type'=>'text','name'=>'searchresults','value'=>'','ttl'=>'搜索结果'
 						),
 						'before-category'=>array(
-							'type'=>'text','name'=>'before-category','value'=>'','ttl'=>'Text before categories'
+							'type'=>'text','name'=>'before-category','value'=>'','ttl'=>'分类块'
 						),
 						'nextpage'=>array(
-							'type'=>'text','name'=>'nextpage','value'=>'','ttl'=>'Next Page'
+							'type'=>'text','name'=>'nextpage','value'=>'','ttl'=>'下一页'
 						),
 						'tags'=>array(
-							'type'=>'text','name'=>'tags','value'=>'','ttl'=>'Tags text'
+							'type'=>'text','name'=>'tags','value'=>'','ttl'=>'标签页'
 						),
                         //value  这里为空，所以允许单独的values数据填充新的定义
 						'relatedposts'=>array(
-							'type'=>'text','name'=>'relatedposts','value'=>'猜你喜欢','ttl'=>'Related posts text'
+							'type'=>'text','name'=>'relatedposts','value'=>'猜你喜欢','ttl'=>'相关文章'
 						),
 						'norelatedposts'=>array(
-							'type'=>'text','name'=>'norelatedposts','value'=>'没有相关推荐','ttl'=>'No related posts text'
+							'type'=>'text','name'=>'norelatedposts','value'=>'没有相关推荐','ttl'=>'没有相关文章'
 						),
 						'permalink'=>array(
-							'type'=>'text','name'=>'permalink','value'=>'','ttl'=>'Permalink to text'
+							'type'=>'text','name'=>'permalink','value'=>'','ttl'=>'永久链接'
 						),
 						'catarchive'=>array(
-							'type'=>'text','name'=>'catarchive','value'=>'分类','ttl'=>'Category archive text'
+							'type'=>'text','name'=>'catarchive','value'=>'分类','ttl'=>'按分类归档'
 						),
 						'tagarchive'=>array(
-							'type'=>'text','name'=>'tagarchive','value'=>'','ttl'=>'Tag archive text'
+							'type'=>'text','name'=>'tagarchive','value'=>'','ttl'=>'按标签归档'
 						),
 						'dailyarchives'=>array(
-							'type'=>'text','name'=>'dailyarchives','value'=>'','ttl'=>'Daily archives text'
+							'type'=>'text','name'=>'dailyarchives','value'=>'','ttl'=>'每日归档'
 						),
 						'monthlyarchives'=>array(
-							'type'=>'text','name'=>'monthlyarchives','value'=>'','ttl'=>'Monthly archives text'
+							'type'=>'text','name'=>'monthlyarchives','value'=>'','ttl'=>'每月归档'
 						),
 						'yearlyarchives'=>array(
-							'type'=>'text','name'=>'yearlyarchives','value'=>'','ttl'=>'Yearly archives text'
+							'type'=>'text','name'=>'yearlyarchives','value'=>'','ttl'=>'每年归档'
 						),
 						'blogarchives'=>array(
-							'type'=>'text','name'=>'blogarchives','value'=>'','ttl'=>'Blog archives text'
+							'type'=>'text','name'=>'blogarchives','value'=>'','ttl'=>'博客归档'
 						),
 						'send'=>array(
-							'type'=>'text','name'=>'send','value'=>'','ttl'=>'Send button text'
+							'type'=>'text','name'=>'send','value'=>'','ttl'=>'提交按钮'
 						), 
 						'feedbackttl'=>array(
-							'type'=>'text','name'=>'feedbackttl','value'=>'','ttl'=>'Contact form title'
+							'type'=>'text','name'=>'feedbackttl','value'=>'','ttl'=>'联系表单'
 						),
 						'feedbackbefore'=>array(
-							'type'=>'text','name'=>'feedbackbefore','value'=>'','ttl'=>'Text before contact form'
+							'type'=>'text','name'=>'feedbackbefore','value'=>'','ttl'=>'联系表单前的文字'
 						),
 						'altposts'=>array(
 							'type'=>'text','name'=>'altposts','value'=>'','ttl'=>'Hint text for posts count in Tag Cloud'
@@ -576,27 +578,27 @@
 					)
 				),
 				'error'=>array(
-					'type'=>'group', 'name'=>'error', 'ttl'=>'Messages',
+					'type'=>'group', 'name'=>'error', 'ttl'=>'系统信息',
 					'content'=>array(
 						'errortext'=>array(
-							'type'=>'text','name'=>'errortext','value'=>'','ttl'=>'404 error text'
+							'type'=>'text','name'=>'errortext','value'=>'','ttl'=>'404错误'
 						),
 						'errorsolution'=>array(
-							'type'=>'text','name'=>'errorsolution','value'=>'','ttl'=>'404 error solution text'
+							'type'=>'text','name'=>'errorsolution','value'=>'','ttl'=>'404建议'
 						),
 						'emailok'=>array(
-							'type'=>'text','name'=>'emailok','value'=>'','ttl'=>'Mail delivery success text'
+							'type'=>'text','name'=>'emailok','value'=>'','ttl'=>'邮件发送成功'
 						)
 					),
 					'value'=>array(
-						'errortext'=>'Error 404 | Nothing found!',//------------------------------
-						'errorsolution'=>'Sorry, but you are looking for something that is not here.',//------------------------------
-						'emailok'=>'Your message has been successfuly sent!'//------------------------------
+						'errortext'=>'404 | 找不到了，请回到首页!',//------------------------------
+						'errorsolution'=>'抱歉，找不到对应内容.',//------------------------------
+						'emailok'=>'邮件发送成功!'//------------------------------
 					)
 				)
 				,
 				'comments'=>array(
-					'type'=>'group', 'name'=>'comments', 'ttl'=>'Comments Text',
+					'type'=>'group', 'name'=>'comments', 'ttl'=>'用户评论',
 					'content'=>array(
 						'password'=>array(
 							'type'=>'text','name'=>'password','value'=>'','ttl'=>'Password protected text'
@@ -724,13 +726,13 @@
 					)
 				),
 				'pagination'=>array(
-					'type'=>'group', 'name'=>'pagination', 'ttl'=>'Pagination Text',
+					'type'=>'group', 'name'=>'pagination', 'ttl'=>'分页',
 					'content'=>array(
 						'firstpage'=>array(
-							'type'=>'text','name'=>'firstpage','value'=>'','ttl'=>'\'First page\' text'
+							'type'=>'text','name'=>'firstpage','value'=>'','ttl'=>'\'第一页\''
 						),
 						'lastpage'=>array(
-							'type'=>'text','name'=>'lastpage','value'=>'','ttl'=>'\'Last page\' text'
+							'type'=>'text','name'=>'lastpage','value'=>'','ttl'=>'\'最后一页\' '
 						)
 					),
 					'value'=>array (

@@ -1,4 +1,7 @@
 <?php
+
+//框架类  smtheme class
+
 	class SMTheme {
 		var $options;
 		var $lang;
@@ -165,7 +168,7 @@
 			}
 			return $slides;
 		}
-		
+		//前台布局
 		function get_layout() {
 			global $post;
 			if (is_single()||is_page()) $layout=get_post_meta($post->ID, 'single_layout', 1);
@@ -191,7 +194,7 @@
 					break;
 			}
 		}
-        //幻灯片  slider
+        //幻灯片  slider 模版
 		function block_slider() {
 		
 			$slides=$this->get_slides();
@@ -248,7 +251,7 @@
 				<?php
 			}
 		}
-		
+		//社交块  模版
 		function block_social () {
 			?>
 			<div id='smthemes_share'>
@@ -273,7 +276,7 @@
 			</div>
 			<?php
 		}
-		
+		//logo模版，支持图片和文字
 		function block_logo() {
 			if ($this->get( 'general', 'logosource' )==1&&$this->get( 'general', 'logoimage' )!='') { ?>
 				<a href='<?php echo home_url(); ?>/'><img src='<?php echo $this->get( 'general', 'logoimage' )?>' class='logo' alt='<?php echo bloginfo( 'name' ); ?>' title="<?php echo bloginfo( 'name' ); ?>" /></a>
@@ -353,7 +356,7 @@
 			}
 			return $class;
 		}
-		
+		//获取后台配置参数
 		function getparams($params,$reset) {
 			global $settingsfile,$settings,$defparamsfile;
 			if ( WP_DEBUG ) error_reporting( 15 ); else error_reporting( 0 );
@@ -412,7 +415,7 @@
 				}
 			}
 		}
-		
+		//自定义网站头部输出
 		function show_title($echo=true) {
 			global $post, $SMTheme;
 				
